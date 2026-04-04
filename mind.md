@@ -19,7 +19,7 @@ SplitX is a blockchain-based expense splitting app that allows users to split bi
 ### ⚪️ Level 1
 - [x] Wallet connect
 - [x] Wallet disconnect
-- [ ] Balance fetch
+- [x] Balance fetch
 - [ ] Expense input UI
 - [ ] Debt calculation logic
 - [ ] XLM transaction send
