@@ -13,6 +13,10 @@
   <i>Split bills. Settle debts. All on-chain. All at light speed.</i>
 </p>
 
+<p align="center">
+  <a href="https://split-x-three.vercel.app/"><b>🌐 Live Demo →</b></a>
+</p>
+
 ---
 
 ## 📖 Overview
@@ -22,9 +26,11 @@
 > **🥋 Stellar Journey to Mastery — White Belt (Level 1) Submission**
 
 ### The Problem
+
 Group expenses (rent, travel, dining) are hard to track and settle. Web2 apps like Splitwise lack integrated payment rails, while existing Web3 tools are too complex for everyday use.
 
 ### The Solution
+
 SplitX combines the intuitive UX of expense-tracking apps with the instant, near-zero-cost transaction rails of the Stellar network. Calculate splits and settle in one click — no intermediaries, no delays.
 
 ---
@@ -45,56 +51,40 @@ SplitX combines the intuitive UX of expense-tracking apps with the instant, near
 ## 📸 Screenshots
 
 ### Landing Page
-> The hero page with the "Settle your debts at Light Speed" tagline, STELLAR TESTNET LIVE badge, animated background blobs, decorative floating transaction cards, and call-to-action buttons.
+
+The hero page with the "Settle your debts at Light Speed" tagline, STELLAR TESTNET LIVE badge, animated background blobs, decorative floating transaction cards, and call-to-action buttons.
 
 <p align="center">
   <img src="docs/screenshots/01_landing_page.png" alt="SplitX Landing Page" width="90%" />
 </p>
 
----
-
 ### Dashboard — Wallet Disconnected
-> The main dashboard before connecting a wallet. The Ledger Entry form is locked with a "Connect wallet to unlock computing" overlay. The Wallet Treasury prompts for connection.
+
+The main dashboard before connecting a wallet. The Ledger Entry form is locked with a "Connect wallet to unlock computing" overlay. The Wallet Treasury prompts for connection.
 
 <p align="center">
-  <img src="docs/screenshots/02_dashboard_disconnected.png" alt="Dashboard - Disconnected" width="90%" />
+  <img src="docs/screenshots/02_dashboard.png" alt="Dashboard - Disconnected" width="90%" />
 </p>
 
----
+### Dashboard — Full Form & Settlement
 
-### Dashboard — Full Form View
-> Scrolled view showing the complete Ledger Entry form (Transaction Subject, Gross Amount in XLM, Split Count, Receiver Node address), the Compute Ledger button, and the Settlement Action card.
+Scrolled view showing the complete Ledger Entry form (Transaction Subject, Gross Amount in XLM, Split Count, Receiver Node address), the Compute Ledger button, and the Settlement Action card.
 
 <p align="center">
-  <img src="docs/screenshots/03_dashboard_full_form.png" alt="Dashboard - Full Form" width="90%" />
+  <img src="docs/screenshots/03_dashboard_full.png" alt="Dashboard - Full Form" width="90%" />
 </p>
-
----
 
 ### Wallet Connected + Balance Displayed
+
 > After connecting Freighter, the navbar shows the truncated public key with a live green indicator. The Wallet Treasury widget displays the XLM balance and Stellar Testnet network badge.
 
-<p align="center">
-  <img src="docs/screenshots/04_wallet_connected.png" alt="Wallet Connected State" width="90%" />
-</p>
+*(Connect your Freighter wallet on the [live demo](https://split-x-three.vercel.app/) to see this in action)*
 
----
+### Successful Transaction + Result
 
-### Settlement Calculated — Ready to Execute
-> After computing the ledger, the Settlement Action card displays the expense name, total invoice, per-person liability in large gradient text, recipient address, and the glowing "Execute Settlement" button.
+> After computing the ledger and clicking "Execute Settlement", the transaction is signed by Freighter and submitted to the network. A success modal displays the transaction hash with a direct "View on Explorer" link to [Stellar Expert](https://stellar.expert/explorer/testnet).
 
-<p align="center">
-  <img src="docs/screenshots/06_settlement_card.png" alt="Settlement Card" width="90%" />
-</p>
-
----
-
-### Successful Transaction
-> The transaction success modal showing the "Settlement Complete" confirmation, the transaction hash, and a "View on Explorer" button linking directly to Stellar Expert.
-
-<p align="center">
-  <img src="docs/screenshots/05_transaction_success.png" alt="Transaction Success Modal" width="90%" />
-</p>
+*(Execute a testnet settlement on the [live demo](https://split-x-three.vercel.app/) to see the full transaction flow)*
 
 ---
 
@@ -103,116 +93,160 @@ SplitX combines the intuitive UX of expense-tracking apps with the instant, near
 ### High-Level Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                      USER (Browser)                     │
-│  ┌───────────────┐  ┌────────────────┐  ┌────────────┐ │
-│  │  Landing Page  │  │   Dashboard    │  │  Tx Modal  │ │
-│  │   (Hero UI)    │  │  (Expense UI)  │  │ (Feedback) │ │
-│  └───────┬───────┘  └───────┬────────┘  └─────┬──────┘ │
-│          │                  │                  │        │
-│          └──────────────────┼──────────────────┘        │
-│                             │                           │
-│                    ┌────────▼────────┐                  │
-│                    │     App.tsx     │                  │
-│                    │  (State + Logic)│                  │
-│                    └──┬──────────┬──┘                  │
-│                       │          │                      │
-│            ┌──────────▼──┐  ┌───▼──────────────┐       │
-│            │  Freighter  │  │  Stellar SDK     │       │
-│            │  Wallet API │  │  TransactionBuilder      │
-│            └──────┬──────┘  └───┬──────────────┘       │
-│                   │             │                       │
-└───────────────────┼─────────────┼───────────────────────┘
-                    │             │
-          ┌─────────▼─────────────▼─────────┐
-          │     Stellar Testnet Network      │
-          │  ┌──────────┐  ┌──────────────┐ │
-          │  │ Horizon   │  │  Stellar     │ │
-          │  │ REST API  │  │  Ledger      │ │
-          │  └──────────┘  └──────────────┘ │
-          └─────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                       USER (Browser)                        │
+│                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────┐ │
+│  │ Landing Page  │  │  Dashboard   │  │ Transaction Modal │ │
+│  │  (Hero UI)    │  │ (Expense UI) │  │    (Feedback)     │ │
+│  └──────┬───────┘  └──────┬───────┘  └────────┬──────────┘ │
+│         └─────────────────┼───────────────────┘             │
+│                           │                                 │
+│                  ┌────────▼─────────┐                       │
+│                  │     App.tsx      │                       │
+│                  │  (State + Logic) │                       │
+│                  └──┬───────────┬───┘                       │
+│                     │           │                           │
+│          ┌──────────▼──┐  ┌────▼───────────────┐           │
+│          │  Freighter   │  │   Stellar SDK      │           │
+│          │  Wallet API  │  │ TransactionBuilder │           │
+│          └──────┬───────┘  └────┬──────────────┘           │
+│                 │               │                           │
+└─────────────────┼───────────────┼───────────────────────────┘
+                  │               │
+        ┌─────────▼───────────────▼───────────┐
+        │       Stellar Testnet Network       │
+        │                                     │
+        │  ┌────────────┐  ┌───────────────┐  │
+        │  │ Horizon API │  │ Stellar Core  │  │
+        │  │  (REST)     │  │  (Ledger)     │  │
+        │  └────────────┘  └───────────────┘  │
+        └─────────────────────────────────────┘
 ```
 
-### Transaction Flow
+### Transaction Flow (Sequence Diagram)
 
 ```
-┌──────────┐     ┌──────────┐     ┌──────────────┐     ┌──────────┐     ┌──────────┐
-│  User    │     │ App.tsx  │     │  Horizon API │     │ Freighter│     │ Stellar  │
-│  Input   │     │  Logic   │     │  (Testnet)   │     │  Wallet  │     │ Network  │
-└────┬─────┘     └────┬─────┘     └──────┬───────┘     └────┬─────┘     └────┬─────┘
-     │                │                   │                  │               │
-     │  Fill expense  │                   │                  │               │
-     │  form + click  │                   │                  │               │
-     │  "Compute"     │                   │                  │               │
-     ├───────────────►│                   │                  │               │
-     │                │                   │                  │               │
-     │                │  loadAccount()    │                  │               │
-     │                ├──────────────────►│                  │               │
-     │                │  ◄── account seq  │                  │               │
-     │                │      + base fee   │                  │               │
-     │                │                   │                  │               │
-     │                │  Build Payment    │                  │               │
-     │                │  Operation (XDR)  │                  │               │
-     │                │                   │                  │               │
-     │                │  signTransaction(xdr)                │               │
-     │                ├─────────────────────────────────────►│               │
-     │                │                   │                  │               │
-     │                │                   │    User reviews  │               │
-     │                │                   │    & confirms    │               │
-     │                │  ◄── signedTxXdr  │                  │               │
-     │                │                   │                  │               │
-     │                │  submitTransaction(signedTx)         │               │
-     │                ├──────────────────►│──────────────────────────────────►
-     │                │                   │                  │               │
-     │                │  ◄── tx hash ─────│◄─────── result ──│               │
-     │                │                   │                  │               │
-     │  Show success  │                   │                  │               │
-     │  modal + hash  │                   │                  │               │
-     │◄───────────────┤                   │                  │               │
-     │                │                   │                  │               │
+ ┌──────┐      ┌──────────┐      ┌──────────┐      ┌──────────┐      ┌─────────┐
+ │ User │      │ App.tsx  │      │ Horizon  │      │Freighter │      │ Stellar │
+ │      │      │          │      │ (Testnet)│      │ Wallet   │      │ Network │
+ └──┬───┘      └────┬─────┘      └────┬─────┘      └────┬─────┘      └────┬────┘
+    │               │                  │                  │                 │
+    │ Fill form +   │                  │                  │                 │
+    │ click Compute │                  │                  │                 │
+    ├──────────────►│                  │                  │                 │
+    │               │                  │                  │                 │
+    │  Click        │ loadAccount()    │                  │                 │
+    │  "Execute     ├─────────────────►│                  │                 │
+    │  Settlement"  │ ◄─ sequence num  │                  │                 │
+    ├──────────────►│    + base fee    │                  │                 │
+    │               │                  │                  │                 │
+    │               │ Build Payment    │                  │                 │
+    │               │ Operation (XDR)  │                  │                 │
+    │               │                  │                  │                 │
+    │               │ signTransaction(xdr)                │                 │
+    │               ├────────────────────────────────────►│                 │
+    │               │                  │                  │                 │
+    │               │                  │   User reviews   │                 │
+    │               │                  │   & confirms ✓   │                 │
+    │               │ ◄── signedTxXdr ─┤                  │                 │
+    │               │                  │                  │                 │
+    │               │ submitTransaction(signedTx)         │                 │
+    │               ├─────────────────►│─────────────────────────────────►│
+    │               │                  │                  │                 │
+    │               │ ◄── tx hash ─────│◄──── result ─────┤                 │
+    │               │                  │                  │                 │
+    │ Success modal │                  │                  │                 │
+    │ + tx hash +   │                  │                  │                 │
+    │ Explorer link │                  │                  │                 │
+    │◄──────────────┤                  │                  │                 │
+    │               │                  │                  │                 │
 ```
 
 ### Component Architecture
 
 ```
-App.tsx (Root State Manager)
+App.tsx ─────────────────────── Root State Manager
 │
-├── State: wallet, balance, splitResult, txStatus, txHash, txError
-├── Logic: connectWallet(), fetchBalance(), settleDebt()
+├── State
+│   ├── wallet: string | null
+│   ├── balance: string | null
+│   ├── splitResult: { name, perPerson, address, total }
+│   ├── txStatus: 'idle' | 'signing' | 'submitting' | 'success' | 'error'
+│   ├── txHash: string | null
+│   └── txError: string | null
+│
+├── Logic
+│   ├── connectWallet()    → Freighter setAllowed() + getUserInfo()
+│   ├── disconnectWallet() → Clear all state
+│   ├── fetchBalance()     → Horizon loadAccount() → native balance
+│   ├── handleCalculateSplit() → amount / splitCount → 7-decimal precision
+│   └── settleDebt()       → Build tx → Sign (Freighter) → Submit (Horizon)
 │
 ├── <Navbar />
-│   ├── Logo + Brand
-│   ├── Connect Wallet (disconnected view)
-│   └── Wallet Pill + Disconnect (connected view)
+│   ├── Logo + Brand ("SPLITX")
+│   ├── [Disconnected] → "Connect Wallet" button
+│   └── [Connected]    → Wallet pill (address + Disconnect)
 │
-├── <LandingPage />          ← view === 'landing'
-│   ├── Animated Hero Section
-│   ├── CTA Buttons (Launch Protocol / Read Docs)
-│   └── Decorative Floating Cards
+├── <LandingPage />                   ← view === 'landing'
+│   ├── STELLAR TESTNET LIVE badge
+│   ├── Hero text + animated background
+│   ├── CTAs: "Launch Protocol" / "Read the Docs"
+│   └── Decorative floating transaction cards
 │
-├── <Dashboard />            ← view === 'app'
-│   ├── <ExpenseForm />
-│   │   ├── Transaction Subject Input
-│   │   ├── Gross Amount (XLM) Input
-│   │   ├── Divided By Input
-│   │   ├── Receiver Node (Stellar Public Key) Input
-│   │   └── Compute Ledger Button
+├── <Dashboard />                     ← view === 'app'
 │   │
-│   ├── <BalanceWidget />
-│   │   ├── Liquid Balance Display
-│   │   └── Network State Indicator (Testnet)
+│   ├── <ExpenseForm />               ← Left column (7/12)
+│   │   ├── Transaction Subject input
+│   │   ├── Gross Amount (XLM) input
+│   │   ├── Divided By input
+│   │   ├── Receiver Node (Stellar Public Key) input
+│   │   ├── "Compute Ledger" button
+│   │   └── Wallet-lock overlay (when disconnected)
 │   │
-│   └── <SettlementCard />
-│       ├── Expense Name + Total Invoice
-│       ├── Per-Person Liability (Large Gradient Text)
-│       ├── Recipient Address Display
-│       └── Execute Settlement Button (Glowing CTA)
+│   ├── <BalanceWidget />             ← Right column (5/12)
+│   │   ├── Liquid Balance (large XLM display)
+│   │   └── Network State badge ("Stellar Testnet")
+│   │
+│   └── <SettlementCard />            ← Right column (5/12)
+│       ├── [Empty state] → "Input expense data to calculate"
+│       └── [With result]
+│           ├── Expense name + total invoice
+│           ├── Per-person liability (gradient text)
+│           ├── Recipient address
+│           └── "Execute Settlement" glowing CTA
 │
-└── <TransactionModal />     ← Overlay (z-100)
-    ├── Signing State → Orbital ring animation
-    ├── Submitting State → Broadcasting animation
-    ├── Success State → ✓ Checkmark + Tx Hash + Explorer Link
-    └── Error State → ✗ Error details + Retry button
+└── <TransactionModal />              ← Full-screen overlay (z-100)
+    ├── [signing]    → Orbital ring animation + "Awaiting Signature"
+    ├── [submitting] → Broadcasting animation + "Submitting to Testnet"
+    ├── [success]    → ✓ Checkmark + tx hash + "View on Explorer" link
+    └── [error]      → ✗ Error details + "Retry" button
+```
+
+### Data Flow Diagram
+
+```
+                    ┌──────────────────────────────────┐
+                    │          Freighter Wallet         │
+                    │    (Browser Extension/Signer)     │
+                    └──────────┬───────────────────────┘
+                               │ signTransaction()
+                               │ returns signedTxXdr
+                               │
+┌──────────┐   setAllowed()   ┌▼──────────────────────┐   loadAccount()    ┌─────────────┐
+│          │   getUserInfo()  │                        │   fetchBaseFee()   │             │
+│  User    ├─────────────────►│       App.tsx          ├──────────────────►│   Horizon    │
+│  (UI)    │◄─────────────────┤   (State Manager)     │◄──────────────────┤   Testnet    │
+│          │   render(state)  │                        │   account data    │   REST API   │
+└──────────┘                  │  • wallet state        │   + tx result     │             │
+                              │  • balance state       │                   └──────┬──────┘
+                              │  • split calculation   │ submitTransaction()      │
+                              │  • tx lifecycle        ├──────────────────────────►│
+                              └────────────────────────┘                   ┌──────▼──────┐
+                                                                          │   Stellar    │
+                                                                          │   Core       │
+                                                                          │   (Ledger)   │
+                                                                          └─────────────┘
 ```
 
 ---
@@ -226,8 +260,9 @@ App.tsx (Root State Manager)
 | **Styling** | Tailwind CSS 3 | Utility-first CSS with custom design tokens |
 | **Typography** | Inter (Google Fonts) | Modern, clean variable font |
 | **Blockchain** | Stellar Testnet | Low-cost, fast transaction network |
-| **Wallet** | Freighter (`@stellar/freighter-api`) | Browser wallet extension for signing |
+| **Wallet** | Freighter (`@stellar/freighter-api`) | Browser extension for signing |
 | **SDK** | `@stellar/stellar-sdk` | Transaction building + Horizon queries |
+| **Hosting** | Vercel | Automatic deployments from GitHub |
 | **Explorer** | Stellar Expert | Transaction verification links |
 
 ---
@@ -287,15 +322,9 @@ SplitX/
 │
 ├── docs/
 │   └── screenshots/                    # README screenshots
-│       ├── 01_landing_page.png
-│       ├── 02_dashboard_disconnected.png
-│       ├── 03_dashboard_full_form.png
-│       ├── 04_wallet_connected.png
-│       ├── 05_transaction_success.png
-│       └── 06_settlement_card.png
 │
 └── src/
-    ├── App.tsx                         # Root state manager + transaction logic
+    ├── App.tsx                         # Root — state, wallet, transactions
     ├── main.tsx                        # React entry point
     ├── index.css                       # Global styles + Tailwind directives
     │
@@ -303,7 +332,7 @@ SplitX/
         ├── ExpenseForm.tsx             # Expense input form with validation
         │
         ├── layout/
-        │   └── Navbar.tsx              # Top navigation (wallet connect/disconnect)
+        │   └── Navbar.tsx              # Top nav (wallet connect/disconnect)
         │
         ├── pages/
         │   ├── Dashboard.tsx           # Main dashboard layout (grid)
@@ -355,7 +384,7 @@ SplitX/
 
 ## 🎨 Design System
 
-SplitX uses a custom dark theme with carefully chosen design tokens:
+SplitX uses a custom dark theme with carefully curated design tokens:
 
 | Token | Value | Usage |
 |---|---|---|
@@ -385,7 +414,15 @@ SplitX uses a custom dark theme with carefully chosen design tokens:
 | Public GitHub repository | ✅ |
 | README with project description | ✅ |
 | README with setup instructions | ✅ |
-| Screenshots in README | ✅ |
+| Deployed application | ✅ |
+
+---
+
+## 🔗 Links
+
+- **Live Demo**: [split-x-three.vercel.app](https://split-x-three.vercel.app/)
+- **GitHub**: [github.com/Mrinmoy-programmer07/SplitX](https://github.com/Mrinmoy-programmer07/SplitX)
+- **Stellar Explorer**: [stellar.expert/explorer/testnet](https://stellar.expert/explorer/testnet)
 
 ---
 
