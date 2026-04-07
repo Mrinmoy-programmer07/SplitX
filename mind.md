@@ -20,10 +20,10 @@ SplitX is a blockchain-based expense splitting app that allows users to split bi
 - [x] Wallet connect
 - [x] Wallet disconnect
 - [x] Balance fetch
-- [ ] Expense input UI
-- [ ] Debt calculation logic
-- [ ] XLM transaction send
-- [ ] Transaction feedback UI
+- [x] Expense input UI
+- [x] Debt calculation logic
+- [x] XLM transaction send
+- [x] Transaction feedback UI
 
 ### 🟡 Level 2
 - [ ] Multi-wallet support
@@ -46,8 +46,9 @@ SplitX is a blockchain-based expense splitting app that allows users to split bi
 - [ ] Mobile UI
 
 ## 📊 Current Status
-Project initialized. Ready to begin Level 1 implementation!
+⚪️ Level 1 — White Belt: ✅ COMPLETE
 
 ## 🧱 Next Steps
-- Initialize React + Tailwind project.
-- Setup Freighter wallet connection (`@stellar/freighter-api`).
+- Create public GitHub repository and push code.
+- Take screenshots for submission.
+- Begin Level 2 (Multi-wallet + Soroban contracts).

@@ -13,19 +13,19 @@
 - [x] **Fetch XLM Balance:** 
   - [x] Query Stellar Testnet Horizon server for connected public key.
   - [x] Display formatted XLM balance in the UI.
-- [ ] **Add Expense UI:**
-  - [ ] Form with Expense Name, Total Amount, To Address.
-  - [ ] Simple validation (cannot be empty, must be valid Stellar public key).
-- [ ] **Debt Calculation Logic:**
-  - [ ] Function to split amount equally or via specific percentages.
-- [ ] **Send XLM Transaction:**
-  - [ ] Build Stellar transaction using SDK.
-  - [ ] Request signature from Freighter wallet.
-  - [ ] Submit transaction to Testnet network.
-- [ ] **Transaction Feedback:**
-  - [ ] Loading state during signature/submission.
-  - [ ] Success state with Transaction Hash / Stellar Expert explorer link.
-  - [ ] Failure / Error state display.
+- [x] **Add Expense UI:**
+  - [x] Form with Expense Name, Total Amount, To Address.
+  - [x] Simple validation (cannot be empty, must be valid Stellar public key).
+- [x] **Debt Calculation Logic:**
+  - [x] Function to split amount equally or via specific percentages.
+- [x] **Send XLM Transaction:**
+  - [x] Build Stellar transaction using SDK.
+  - [x] Request signature from Freighter wallet.
+  - [x] Submit transaction to Testnet network.
+- [x] **Transaction Feedback:**
+  - [x] Loading state during signature/submission.
+  - [x] Success state with Transaction Hash / Stellar Expert explorer link.
+  - [x] Failure / Error state display.
 
 ## Phase 2: Smart Contract & Wallets (Level 2)
 - [ ] Integrate `StellarWalletsKit`.

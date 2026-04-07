@@ -4,6 +4,18 @@
 
 @layer base {
   body {
-    @apply bg-splitx-background text-splitx-text antialiased;
+    @apply bg-splitx-background text-splitx-text antialiased overflow-x-hidden;
+    background-image: radial-gradient(circle at 10% 20%, rgba(132, 204, 22, 0.03) 0%, transparent 20%),
+                      radial-gradient(circle at 90% 80%, rgba(234, 179, 8, 0.03) 0%, transparent 20%);
+    background-size: cover;
+    background-attachment: fixed;
   }
 }
+
+/* Custom utility for staggered animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-1000 { animation-delay: 1000ms; }
+.delay-2000 { animation-delay: 2000ms; }
+.delay-4000 { animation-delay: 4000ms; }
