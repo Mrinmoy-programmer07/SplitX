@@ -1,0 +1,1 @@
+C:\Users\mrinm\OneDrive\Desktop\Stellar\SplitX\contracts\expense_logger\target\wasm32v1-none\release\expense_logger.wasm: C:\Users\mrinm\OneDrive\Desktop\Stellar\SplitX\contracts\expense_logger\src\lib.rs

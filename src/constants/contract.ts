@@ -13,8 +13,10 @@
  *       Returns the total number of logged expenses
  */
 
-// Deployed contract address — updated after deployment
-export const CONTRACT_ID = 'PLACEHOLDER_DEPLOY_FIRST'
+// Deployed contract address on Stellar Testnet
+// Deployment TX: c8cf87ab0bedf6ba451dd9068bed4ce3573e60e637e43946ed5667707e51be66
+// Explorer: https://stellar.expert/explorer/testnet/contract/CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN
+export const CONTRACT_ID = 'CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN'
 
 // Soroban RPC endpoint for Stellar Testnet
 export const SOROBAN_RPC_URL = 'https://soroban-testnet.stellar.org'
