@@ -1,12 +1,13 @@
 interface NavbarProps {
   view: 'landing' | 'app';
   wallet: string | null;
+  walletName?: string | null;
   onConnect: () => void;
   onDisconnect: () => void;
   onLaunch: () => void;
 }
 
-export function Navbar({ view, wallet, onConnect, onDisconnect, onLaunch }: NavbarProps) {
+export function Navbar({ view, wallet, walletName, onConnect, onDisconnect, onLaunch }: NavbarProps) {
   return (
     <nav className="w-full border-b border-gray-800/80 bg-black/40 backdrop-blur-2xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
@@ -43,9 +44,16 @@ export function Navbar({ view, wallet, onConnect, onDisconnect, onLaunch }: Navb
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-splitx-secondary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-splitx-secondary"></span>
                 </div>
-                <span className="text-md font-mono text-gray-200 tracking-widest hidden sm:block font-semibold">
-                  {wallet.substring(0,5)}<span className="text-gray-500">...</span>{wallet.substring(wallet.length - 4)}
-                </span>
+                <div className="hidden sm:flex flex-col">
+                  {walletName && (
+                    <span className="text-[10px] text-splitx-primary uppercase tracking-widest font-bold leading-none mb-0.5">
+                      {walletName}
+                    </span>
+                  )}
+                  <span className="text-sm font-mono text-gray-200 font-semibold">
+                    {wallet.substring(0,5)}<span className="text-gray-500">...</span>{wallet.substring(wallet.length - 4)}
+                  </span>
+                </div>
                 <button 
                   onClick={onDisconnect} 
                   className="text-sm bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white px-5 py-2 rounded-full font-bold transition-all duration-300"
