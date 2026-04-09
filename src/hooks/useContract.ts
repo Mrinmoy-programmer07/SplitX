@@ -31,10 +31,6 @@ export async function logExpenseOnChain(
   amountXlm: string,
   signTx: (xdr: string) => Promise<string>
 ): Promise<ContractCallResult> {
-  if (CONTRACT_ID === 'PLACEHOLDER_DEPLOY_FIRST') {
-    throw new Error('Contract not yet deployed. Please deploy the contract first.')
-  }
-
   // 1. Build source account
   const accountData = await sorobanServer.getAccount(walletAddress)
   const account = new Account(walletAddress, accountData.sequenceNumber())
