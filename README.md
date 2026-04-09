@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/Stellar-Testnet-gold?style=for-the-badge&logo=stellar&logoColor=white" alt="Stellar Testnet" />
   <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Vite-4-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Soroban-Contract-blueviolet?style=for-the-badge&logo=rust&logoColor=white" alt="Soroban" />
   <img src="https://img.shields.io/badge/TailwindCSS-3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind" />
 </p>
 
@@ -21,9 +21,10 @@
 
 ## 📖 Overview
 
-**SplitX** is a blockchain-powered expense splitting dApp built on the **Stellar Testnet**. It lets users connect their Freighter wallet, calculate shared expenses, and instantly settle debts by sending XLM — all through a premium, immersive dark-themed interface.
+**SplitX** is a blockchain-powered expense splitting dApp built on the **Stellar Testnet**. It lets users connect their Freighter, Albedo, or xBull wallet, calculate shared expenses, and instantly settle debts by sending XLM — with every settlement logged permanently on-chain via a deployed **Soroban smart contract**.
 
-> **🥋 Stellar Journey to Mastery — White Belt (Level 1) Submission**
+> **⚪️ Level 1 — White Belt: ✅ COMPLETE**
+> **🟡 Level 2 — Yellow Belt: ✅ COMPLETE**
 
 ### The Problem
 
@@ -39,12 +40,14 @@ SplitX combines the intuitive UX of expense-tracking apps with the instant, near
 
 | Feature | Description |
 |---|---|
-| 🔗 **Wallet Connect** | Connect & disconnect via Freighter browser extension |
+| 🔗 **Multi-Wallet** | Connect via Freighter, Albedo, or xBull using StellarWalletsKit |
 | 💰 **Live Balance** | Real-time XLM balance fetched from Stellar Horizon Testnet |
-| 🧮 **Expense Splitting** | Input expenses, specify split count, auto-calculate per-person liability |
-| 🚀 **On-Chain Settlement** | Build, sign, and submit XLM payment transactions on Stellar Testnet |
-| 📊 **Transaction Feedback** | Full-screen modal — loading animation, success with tx hash + Explorer link, error handling |
-| 🎨 **Premium UI** | Dark theme, animated gradients, glassmorphism, Inter font, micro-animations |
+| 🧮 **Expense Splitting** | Input expenses, split count, auto-calculate per-person liability |
+| 🚀 **On-Chain Settlement** | Build, sign, and submit XLM payment + Soroban contract call |
+| 📜 **Smart Contract** | expense_logger contract logs every settlement permanently on-chain |
+| ⚠️ **3 Error Types** | Wallet not found / Transaction rejected / Insufficient balance |
+| 📊 **Real-Time Status** | 6-step progress tracker + elapsed timer during transactions |
+| 🎨 **Premium UI** | Dark theme, animated gradients, glassmorphism, Inter font |
 
 ---
 
@@ -260,8 +263,10 @@ App.tsx ─────────────────────── Ro
 | **Styling** | Tailwind CSS 3 | Utility-first CSS with custom design tokens |
 | **Typography** | Inter (Google Fonts) | Modern, clean variable font |
 | **Blockchain** | Stellar Testnet | Low-cost, fast transaction network |
-| **Wallet** | Freighter (`@stellar/freighter-api`) | Browser extension for signing |
-| **SDK** | `@stellar/stellar-sdk` | Transaction building + Horizon queries |
+| **Multi-Wallet** | `@creit.tech/stellar-wallets-kit` v2 | Freighter + Albedo + xBull unified API |
+| **SDK** | `@stellar/stellar-sdk` | Transaction building, Horizon + SorobanRpc |
+| **Smart Contract** | Rust + Soroban SDK v22 | `expense_logger` contract on testnet |
+| **Contract CLI** | `stellar-cli` v25.2.0 | Contract build + deploy toolchain |
 | **Hosting** | Vercel | Automatic deployments from GitHub |
 | **Explorer** | Stellar Expert | Transaction verification links |
 
@@ -415,6 +420,33 @@ SplitX uses a custom dark theme with carefully curated design tokens:
 | README with project description | ✅ |
 | README with setup instructions | ✅ |
 | Deployed application | ✅ |
+
+---
+
+## 🟡 Yellow Belt (Level 2) — Submission Checklist
+
+| Requirement | Status | Details |
+|---|---|---|
+| Multi-wallet support (3+ wallets) | ✅ | Freighter, Albedo, xBull via StellarWalletsKit v2 |
+| Screenshot: wallet options available | ✅ | WalletSelectModal with all 3 wallet options |
+| 3 error types handled | ✅ | wallet_not_found / rejected / insufficient_balance |
+| Soroban contract deployed on testnet | ✅ | `CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN` |
+| Contract called from frontend | ✅ | `log_expense()` called on every settlement |
+| Transaction status visible | ✅ | 6-step progress indicator + elapsed timer |
+| Minimum 2+ meaningful commits | ✅ | 6 commits (see git log) |
+| Public GitHub repository | ✅ | |
+| Live demo link | ✅ | [split-x-three.vercel.app](https://split-x-three.vercel.app/) |
+
+### Deployed Contract
+
+| Field | Value |
+|---|---|
+| **Contract Address** | `CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN` |
+| **Network** | Stellar Testnet |
+| **Deploy TX** | [`c8cf87ab...`](https://stellar.expert/explorer/testnet/tx/c8cf87ab0bedf6ba451dd9068bed4ce3573e60e637e43946ed5667707e51be66) |
+| **Explorer** | [View Contract](https://stellar.expert/explorer/testnet/contract/CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN) |
+| **Functions** | `log_expense(from, amount, timestamp) → u32`, `get_count() → u32` |
+| **Storage** | Persistent ledger entry (500,000 ledger TTL) |
 
 ---
 

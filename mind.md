@@ -26,11 +26,13 @@ SplitX is a blockchain-based expense splitting app that allows users to split bi
 - [x] Transaction feedback UI
 
 ### 🟡 Level 2
-- [ ] Multi-wallet support
-- [ ] Contract deployed
-- [ ] Contract interaction
-- [ ] Debt tracking on-chain
-- [ ] Error handling
+- [x] Multi-wallet support (Freighter, Albedo, xBull via StellarWalletsKit)
+- [x] WalletSelectModal with 3 wallet options
+- [x] 3 error types handled (wallet_not_found, rejected, insufficient_balance)
+- [x] Contract deployed: `CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN`
+- [x] Contract interaction via SorobanRpc (log_expense called on every settlement)
+- [x] Real-time tx status tracking (6-step progress + elapsed timer)
+- [x] Soroban events emitted on each expense settlement
 
 ### 🟠 Level 3
 - [ ] Dashboard
@@ -47,8 +49,9 @@ SplitX is a blockchain-based expense splitting app that allows users to split bi
 
 ## 📊 Current Status
 ⚪️ Level 1 — White Belt: ✅ COMPLETE
+🟡 Level 2 — Yellow Belt: ✅ COMPLETE
 
 ## 🧱 Next Steps
-- Create public GitHub repository and push code.
-- Take screenshots for submission.
-- Begin Level 2 (Multi-wallet + Soroban contracts).
+- Begin Level 3 (Dashboard, expense history, debt minimization).
+- Push code to GitHub and deploy to Vercel.
+- Submit Yellow Belt via the challenge platform.

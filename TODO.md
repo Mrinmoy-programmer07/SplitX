@@ -28,12 +28,18 @@
   - [x] Failure / Error state display.
 
 ## Phase 2: Smart Contract & Wallets (Level 2)
-- [ ] Integrate `StellarWalletsKit`.
-- [ ] Create basic Soroban Rust project inside `/contracts`.
-- [ ] Write contract logic to store expense IDs and participants.
-- [ ] Deploy contract to Stellar Testnet.
-- [ ] Create React hook to interact with Soroban contract.
-- [ ] Comprehensive UI error handling.
+- [x] Integrate `StellarWalletsKit` (Freighter + Albedo + xBull).
+- [x] Install Rust toolchain + stellar-cli v25.2.0.
+- [x] Create Soroban Rust project inside `/contracts/expense_logger`.
+- [x] Write `log_expense` + `get_count` contract functions with persistent storage.
+- [x] Build contract WASM (1814 bytes, wasm32v1-none target).
+- [x] Deploy contract to Stellar Testnet.
+      Contract: `CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN`
+      Deploy TX: `c8cf87ab0bedf6ba451dd9068bed4ce3573e60e637e43946ed5667707e51be66`
+- [x] Create `useContract.ts` hook to call log_expense() via SorobanRpc.
+- [x] Create `WalletSelectModal` showing 3 wallet options.
+- [x] Comprehensive UI error handling (3 error types: wallet_not_found, rejected, insufficient_balance).
+- [x] Real-time step-by-step transaction status tracking (6 steps + elapsed timer).
 
 ## Phase 3: Dashboard & UX (Level 3)
 - [ ] Scaffold Dashboard Layout.
