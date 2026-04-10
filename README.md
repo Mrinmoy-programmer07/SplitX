@@ -69,6 +69,14 @@ The main dashboard before connecting a wallet. The Ledger Entry form is locked w
   <img src="docs/screenshots/02_dashboard.png" alt="Dashboard - Disconnected" width="90%" />
 </p>
 
+### Wallet Selection — Connect Wallet Modal
+
+Clicking "Connect Wallet" opens the multi-wallet selection modal powered by **StellarWalletsKit v2**. Users can choose from **Freighter** (official SDF extension), **Albedo** (web-based, no extension needed), or **xBull Wallet** (advanced multi-account). A direct install link is shown for users without a wallet.
+
+<p align="center">
+  <img src="docs/screenshots/04_wallet_connect_modal.png" alt="Wallet Connect Modal — Freighter, Albedo, xBull" width="70%" />
+</p>
+
 ### Dashboard — Full Form & Settlement
 
 Scrolled view showing the complete Ledger Entry form (Transaction Subject, Gross Amount in XLM, Split Count, Receiver Node address), the Compute Ledger button, and the Settlement Action card.
@@ -79,13 +87,13 @@ Scrolled view showing the complete Ledger Entry form (Transaction Subject, Gross
 
 ### Wallet Connected + Balance Displayed
 
-> After connecting Freighter, the navbar shows the truncated public key with a live green indicator. The Wallet Treasury widget displays the XLM balance and Stellar Testnet network badge.
+> After connecting Freighter, Albedo, or xBull — the navbar shows the wallet provider name + truncated public key with a live green indicator. The Wallet Treasury widget displays the XLM balance and Stellar Testnet network badge.
 
-*(Connect your Freighter wallet on the [live demo](https://split-x-three.vercel.app/) to see this in action)*
+*(Connect your wallet on the [live demo](https://split-x-three.vercel.app/) to see this in action)*
 
 ### Successful Transaction + Result
 
-> After computing the ledger and clicking "Execute Settlement", the transaction is signed by Freighter and submitted to the network. A success modal displays the transaction hash with a direct "View on Explorer" link to [Stellar Expert](https://stellar.expert/explorer/testnet).
+> After computing the ledger and clicking "Execute Settlement", the transaction is signed by the connected wallet and submitted to the network. A success modal displays both the **payment TX hash** and the **Soroban contract call TX hash** with direct "View on Explorer" links.
 
 *(Execute a testnet settlement on the [live demo](https://split-x-three.vercel.app/) to see the full transaction flow)*
 
@@ -427,26 +435,37 @@ SplitX uses a custom dark theme with carefully curated design tokens:
 
 | Requirement | Status | Details |
 |---|---|---|
+| Public GitHub repository | ✅ | [github.com/Mrinmoy-programmer07/SplitX](https://github.com/Mrinmoy-programmer07/SplitX) |
+| README with setup instructions | ✅ | See [Getting Started](#-getting-started) section |
+| Minimum 2+ meaningful commits | ✅ | 7 commits (see git log) |
+| Live demo link | ✅ | [split-x-three.vercel.app](https://split-x-three.vercel.app/) |
+| Screenshot: wallet options available | ✅ | See screenshot below ↓ |
+| Deployed contract address | ✅ | `CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN` |
+| Transaction hash of contract call | ✅ | [`2d4e6401...`](https://stellar.expert/explorer/testnet/tx/2d4e640102b72a8f12a14e9a937912a3eb61f0dd35bf6eaa2e253bc5953fb54e) |
 | Multi-wallet support (3+ wallets) | ✅ | Freighter, Albedo, xBull via StellarWalletsKit v2 |
-| Screenshot: wallet options available | ✅ | WalletSelectModal with all 3 wallet options |
 | 3 error types handled | ✅ | wallet_not_found / rejected / insufficient_balance |
-| Soroban contract deployed on testnet | ✅ | `CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN` |
 | Contract called from frontend | ✅ | `log_expense()` called on every settlement |
 | Transaction status visible | ✅ | 6-step progress indicator + elapsed timer |
-| Minimum 2+ meaningful commits | ✅ | 6 commits (see git log) |
-| Public GitHub repository | ✅ | |
-| Live demo link | ✅ | [split-x-three.vercel.app](https://split-x-three.vercel.app/) |
 
-### Deployed Contract
+### 📸 Screenshot: Wallet Options
+
+<p align="center">
+  <img src="docs/screenshots/04_wallet_connect_modal.png" alt="Wallet Connect Modal — Freighter, Albedo, xBull" width="60%" />
+</p>
+
+*The Connect Wallet modal shows all 3 supported wallets: Freighter (official SDF extension), Albedo (web-based), and xBull (advanced multi-account).*
+
+### 🔗 Deployed Contract Details
 
 | Field | Value |
 |---|---|
-| **Contract Address** | `CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN` |
+| **Contract Address** | [`CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN`](https://stellar.expert/explorer/testnet/contract/CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN) |
 | **Network** | Stellar Testnet |
-| **Deploy TX** | [`c8cf87ab...`](https://stellar.expert/explorer/testnet/tx/c8cf87ab0bedf6ba451dd9068bed4ce3573e60e637e43946ed5667707e51be66) |
-| **Explorer** | [View Contract](https://stellar.expert/explorer/testnet/contract/CCMWZ3HNOQYLMW52LBJKBYBUVLABUA5GXTCRS43UPGDTUMKVXEJT46CN) |
+| **Deploy TX Hash** | [`c8cf87ab0bedf6ba...`](https://stellar.expert/explorer/testnet/tx/c8cf87ab0bedf6ba451dd9068bed4ce3573e60e637e43946ed5667707e51be66) |
+| **Contract Call TX Hash** | [`2d4e640102b72a8f...`](https://stellar.expert/explorer/testnet/tx/2d4e640102b72a8f12a14e9a937912a3eb61f0dd35bf6eaa2e253bc5953fb54e) |
 | **Functions** | `log_expense(from, amount, timestamp) → u32`, `get_count() → u32` |
-| **Storage** | Persistent ledger entry (500,000 ledger TTL) |
+| **Storage** | Persistent ledger (500,000 ledger TTL) |
+| **Events** | Emits `expense_logged` event on every call |
 
 ---
 
