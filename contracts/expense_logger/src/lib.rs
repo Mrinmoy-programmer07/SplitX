@@ -12,7 +12,7 @@
 
 #![no_std]
 
-use soroban_sdk::{contract, contractimpl, Address, Env, Symbol, symbol_short};
+use soroban_sdk::{contract, contractimpl, Address, Env, Symbol, symbol_short, IntoVal};
 
 // Ledger key for the expense count (persistent storage)
 const COUNT_KEY: Symbol = symbol_short!("COUNT");
@@ -31,9 +31,17 @@ impl ExpenseLoggerContract {
     ///
     /// # Returns
     /// The updated total expense count (acts as the expense ID)
-    pub fn log_expense(env: Env, from: Address, amount: i128, timestamp: u64) -> u32 {
+    pub fn log_expense(env: Env, loyalty_contract: Address, from: Address, amount: i128, timestamp: u64) -> u32 {
         // Require authorization from the 'from' address
         from.require_auth();
+
+        // 🟢 Inter-Contract Call: Award 1 Loyalty Point to the settler
+        let points_to_add = 1u32;
+        env.invoke_contract::<u32>(
+            &loyalty_contract,
+            &Symbol::new(&env, "add_points"),
+            soroban_sdk::vec![&env, from.into_val(&env), points_to_add.into_val(&env)],
+        );
 
         // Load current count (default 0)
         let mut count: u32 = env.storage().persistent().get(&COUNT_KEY).unwrap_or(0);
