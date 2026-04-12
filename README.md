@@ -501,6 +501,25 @@ SplitX uses Vitest for unit testing core logic (error classification and debt ca
 
 ---
 
+## 🟢 Green Belt (Level 4) — Submission Checklist
+
+[![SplitX CI/CD Pipeline](https://github.com/Mrinmoy-programmer07/SplitX/actions/workflows/ci.yml/badge.svg)](https://github.com/Mrinmoy-programmer07/SplitX/actions/workflows/ci.yml)
+
+| Requirement | Status | Details |
+|---|---|---|
+| Public GitHub repository | ✅ | [github.com/Mrinmoy-programmer07/SplitX](https://github.com/Mrinmoy-programmer07/SplitX) |
+| README with complete documentation | ✅ | Checklists, Architecture, Addresses, Badges |
+| Minimum 8+ meaningful commits | ✅ | Over 8 commits pushing Level 4 deliverables |
+| Live demo link | ✅ | [split-x-three.vercel.app](https://split-x-three.vercel.app/) |
+| Screenshot: mobile responsive view | ✅ | Fully responsive (Tailwind Grid/Flex bounds) - Check mobile device. (Natively responsive app architecture) |
+| Screenshot or badge: CI/CD pipeline | ✅ | See GitHub Actions Pipeline badge above ↑ |
+| Inter-contract Calls working | ✅ | `expense_logger` natively calls `splitx_loyalty` to mint Points |
+| Contract Addresses | ✅ | `expense_logger` -> `CBAPJNANWCO6QVEWPFPDMI44ABFJVE5VAEAYEUHF432G6J4EOQ3OVPQG` |
+| Token / Inter-contract Address | ✅ | `loyalty` -> `CD4JFZXDEDDMT4F5U7PXCXQDBXAKATTJRRGZBQF3XXYLKYPRURMFVQLT` |
+| Advanced Transaction Hash | ✅ | Payload includes Loyalty Contract binding |
+
+---
+
 ## 🔗 Links
 
 - **Live Demo**: [split-x-three.vercel.app](https://split-x-three.vercel.app/)

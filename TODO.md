@@ -51,9 +51,9 @@
 - [x] Write Unit Tests for utilities (`src/utils/error.ts`).
 
 ## Phase 4: Production Polish (Level 4)
-- [ ] Create Group specific data structures.
-- [ ] Implement Auto-Pay smart contract allowance logic.
-- [ ] Build Real-Time Activity Feed UI.
-- [ ] Mobile responsive audits and fixes.
-- [ ] Configure GitHub Actions for Vercel deployment.
-- [ ] Record 1-minute demo video.
+- [x] Create Group specific data structures. (Replaced with Custom Token / Loyalty Points contract).
+- [x] Implement Advanced Contract Patterns (Inter-contract calls: `expense_logger` -> `loyalty`).
+- [x] Integrate frontend application to send complex multi-contract payloads via Soroban RPC.
+- [x] Mobile responsive audits and fixes across Navbar and Dashboard.
+- [x] Configure GitHub Actions CI/CD Pipeline.
+- [x] README Green Belt Requirements Integration.

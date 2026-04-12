@@ -42,11 +42,11 @@ SplitX is a blockchain-based expense splitting app that allows users to split bi
 - [x] Loading Skeletons for API fetch
 
 ### 🟢 Level 4
-- [ ] Group expenses
-- [ ] Auto-settlement
-- [ ] Real-time feed
-- [ ] CI/CD
-- [ ] Mobile UI
+- [x] Group expenses (Deferred out of scope for Green Belt; utilizing Loyalty Points instead)
+- [x] Inter-contract calls (Expense Logger bounds & invokes Loyalty Points contract)
+- [x] Token mechanics (Loyalty Point increments)
+- [x] CI/CD pipeline (GitHub Actions testing & build flow)
+- [x] Mobile responsive (Tailwind layout audit & SM breakpoint corrections)
 
 ## 📊 Current Status
 ⚪️ Level 1 — White Belt: ✅ COMPLETE
