@@ -8,7 +8,7 @@ import {
   nativeToScVal,
   scValToNative,
 } from '@stellar/stellar-sdk'
-import { CONTRACT_ID, SOROBAN_RPC_URL } from '../constants/contract'
+import { CONTRACT_ID, LOYALTY_CONTRACT_ID, SOROBAN_RPC_URL } from '../constants/contract'
 
 const sorobanServer = new rpc.Server(SOROBAN_RPC_URL)
 
@@ -20,7 +20,7 @@ export interface ContractCallResult {
 /**
  * Logs an expense settlement to the on-chain expense_logger contract.
  *
- * Calls: log_expense(from: Address, amount: i128, timestamp: u64) -> u32
+ * Calls: log_expense(loyalty_contract: Address, from: Address, amount: i128, timestamp: u64) -> u32
  *
  * @param walletAddress  - Connected wallet public key (sender / source)
  * @param amountXlm     - Amount settled in XLM (as string, e.g. "25.0000000")
@@ -38,7 +38,8 @@ export async function logExpenseOnChain(
   // 2. Convert args to ScVal types expected by the contract 
   const amountStroops = BigInt(Math.round(parseFloat(amountXlm) * 10_000_000))
   const args = [
-    new Address(walletAddress).toScVal(),                    // from: Address
+    new Address(LOYALTY_CONTRACT_ID).toScVal(),             // loyalty_contract: Address
+    new Address(walletAddress).toScVal(),                   // from: Address
     nativeToScVal(amountStroops, { type: 'i128' }),         // amount: i128 (in stroops)
     nativeToScVal(BigInt(Date.now()), { type: 'u64' }),     // timestamp: u64
   ]
