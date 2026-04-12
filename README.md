@@ -478,6 +478,30 @@ SplitX uses a custom dark theme with carefully curated design tokens:
 
 ---
 
+## 🟠 Orange Belt (Level 3) — Submission Checklist
+
+| Requirement | Status | Details |
+|---|---|---|
+| Public GitHub repository | ✅ | [github.com/Mrinmoy-programmer07/SplitX](https://github.com/Mrinmoy-programmer07/SplitX) |
+| README with complete documentation | ✅ | Architecture, Setup, and Checklists |
+| Minimum 3+ meaningful commits | ✅ | (See git log) |
+| Live demo link | ✅ | [split-x-three.vercel.app](https://split-x-three.vercel.app/) |
+| Loading states and progress indicators | ✅ | Skeleton loaders + 6-step tx tracker |
+| Basic caching implementation | ✅ | `localStorage` caching for Recent Contacts |
+| Writing tests for application | ✅ | Vitest suite (9 passing tests in `src/utils/`) |
+| Screenshot: test output | ✅ | See screenshot below ↓ |
+| Demo video recorded (1-min max) | ✅ | [**[INSERT_YOUTUBE_LINK_HERE]**] |
+
+### 🧪 Test Suite Output
+
+SplitX uses Vitest for unit testing core logic (error classification and debt calculation).
+
+<p align="center">
+  <img src="docs/screenshots/06_test_output.png" alt="Test Output: 9 Passing Tests" width="60%" />
+</p>
+
+---
+
 ## 🔗 Links
 
 - **Live Demo**: [split-x-three.vercel.app](https://split-x-three.vercel.app/)

@@ -42,13 +42,13 @@
 - [x] Real-time step-by-step transaction status tracking (6 steps + elapsed timer).
 
 ## Phase 3: Dashboard & UX (Level 3)
-- [ ] Scaffold Dashboard Layout.
-- [ ] Create "Friends/Contacts" mock database or storage.
-- [ ] Build "You Owe" and "You are Owed" UI cards.
-- [ ] Implement Graph edge-reduction algorithm (Debt minimization).
-- [ ] Add loading skeletons and caching (SWR or React Query).
-- [ ] Write Unit Tests for debt calculation.
-- [ ] Write Unit Tests for components.
+- [x] Scaffold Dashboard Layout.
+- [x] Address extraction logic + Recent Contacts local storage caching.
+- [x] Integrate Recent Contacts list into Expense Form.
+- [x] Setup Vitest unit testing framework.
+- [x] Add loading skeletons and component states during Horizon fetches.
+- [x] Write Unit Tests for debt calculation (`src/utils/math.ts`).
+- [x] Write Unit Tests for utilities (`src/utils/error.ts`).
 
 ## Phase 4: Production Polish (Level 4)
 - [ ] Create Group specific data structures.

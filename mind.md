@@ -35,10 +35,11 @@ SplitX is a blockchain-based expense splitting app that allows users to split bi
 - [x] Soroban events emitted on each expense settlement
 
 ### 🟠 Level 3
-- [ ] Dashboard
-- [ ] Expense history
-- [ ] Debt minimization logic
-- [ ] Tests added
+- [x] Dashboard
+- [x] Expense history (Caching with Recent Contacts)
+- [x] Debt minimization logic (Extracted math engine)
+- [x] Tests added (Vitest setup with 9 passing tests)
+- [x] Loading Skeletons for API fetch
 
 ### 🟢 Level 4
 - [ ] Group expenses
