@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRecentContacts } from '../hooks/useRecentContacts'
 
 export interface ExpenseData {
   name: string
@@ -17,6 +18,8 @@ export function ExpenseForm({ onCalculate, disabled }: ExpenseFormProps) {
   const [amount, setAmount] = useState('')
   const [address, setAddress] = useState('')
   const [splitCount, setSplitCount] = useState('2')
+  
+  const { contacts, addContact } = useRecentContacts()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,6 +32,8 @@ export function ExpenseForm({ onCalculate, disabled }: ExpenseFormProps) {
       alert("Invalid Stellar public key format.")
       return
     }
+
+    addContact(address, name)
 
     onCalculate({
       name,
@@ -117,6 +122,28 @@ export function ExpenseForm({ onCalculate, disabled }: ExpenseFormProps) {
               required
             />
           </div>
+          
+          {contacts.length > 0 && !address && (
+            <div className="mt-3 bg-black/60 border border-gray-800 rounded-xl overflow-hidden divide-y divide-gray-800 animate-slide-up shadow-inner">
+              <div className="px-4 py-2 bg-gray-900/50">
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Recent Nodes</p>
+              </div>
+              {contacts.map((c, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setAddress(c.address)}
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-800/80 transition-colors group/item"
+                >
+                  <div className="flex flex-col items-start truncate max-w-[80%]">
+                    {c.alias && <span className="text-sm font-bold text-gray-300 group-hover/item:text-splitx-primary transition-colors">{c.alias}</span>}
+                    <span className="text-xs text-gray-500 font-mono truncate w-full">{c.address}</span>
+                  </div>
+                  <svg className="w-4 h-4 text-gray-600 group-hover/item:text-splitx-secondary opacity-0 group-hover/item:opacity-100 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <button 
