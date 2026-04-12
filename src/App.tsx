@@ -77,10 +77,10 @@ function App() {
   }
 
   // ─── Connect wallet ────────────────────────────────────────────────────
-  const handleConnectWallet = useCallback(async () => {
+  const handleConnectWallet = useCallback(async (walletId: string) => {
     setIsConnecting(true)
     try {
-      await connectWallet()
+      await connectWallet(walletId)
       setShowWalletModal(false)
     } catch (err: any) {
       const { type, message } = classifyError(err)

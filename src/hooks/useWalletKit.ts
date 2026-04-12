@@ -73,11 +73,22 @@ export function useWalletKit() {
     }
   }, [])
 
-  // ─── Connect — opens the multi-wallet auth modal ───────────────────────
-  const connectWallet = useCallback(async (): Promise<void> => {
+  // ─── Connect — skip modal if walletId provided, otherwise open auth modal ───
+  const connectWallet = useCallback(async (walletId?: string): Promise<void> => {
     if (!isKitReady) throw new Error('Kit not ready yet')
 
-    const { address } = await StellarWalletsKit.authModal()
+    let address: string;
+    
+    if (walletId) {
+      // Connect specifically to a wallet module without showing the kit's modal
+      StellarWalletsKit.setWallet(walletId);
+      const result = await StellarWalletsKit.fetchAddress();
+      address = result.address;
+    } else {
+      // Fallback: Use the kit's built-in modal
+      const result = await StellarWalletsKit.authModal();
+      address = result.address;
+    }
 
     // Determine which wallet module is selected
     const module  = StellarWalletsKit.selectedModule
