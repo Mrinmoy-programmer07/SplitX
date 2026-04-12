@@ -11,6 +11,7 @@
  *       Stores an expense record and returns the new expense count (ID)
  *   - get_count() -> u32
  *       Returns the total number of logged expenses
+ */
 // Deployed contracts on Stellar Testnet for Green Belt
 // Logger Explorer: https://stellar.expert/explorer/testnet/contract/CBAPJNANWCO6QVEWPFPDMI44ABFJVE5VAEAYEUHF432G6J4EOQ3OVPQG
 export const CONTRACT_ID = 'CBAPJNANWCO6QVEWPFPDMI44ABFJVE5VAEAYEUHF432G6J4EOQ3OVPQG'

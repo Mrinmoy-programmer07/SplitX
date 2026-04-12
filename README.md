@@ -518,6 +518,14 @@ SplitX uses Vitest for unit testing core logic (error classification and debt ca
 | Token / Inter-contract Address | ✅ | `loyalty` -> `CD4JFZXDEDDMT4F5U7PXCXQDBXAKATTJRRGZBQF3XXYLKYPRURMFVQLT` |
 | Advanced Transaction Hash | ✅ | Payload includes Loyalty Contract binding |
 
+### 🧠 Smart Contracts Architecture
+
+As part of the Green Belt advanced architectural upgrades, SplitX has migrated from a monolith into a decoupled, Inter-Contract Soroban ecosystem on the Stellar Testnet.
+
+| Contract Name | Network | Contract Address ID | Description |
+|---|---|---|---|
+| **Expense Logger** | Stellar Testnet | `CBAPJNANWCO6QVEWPFPDMI44ABFJVE5VAEAYEUHF432G6J4EOQ3OVPQG` | Primary application contract. Receives settlement transactions, verifies signatures, logs data, and performs `invoke_contract` calls into the Loyalty module natively. |
+| **Loyalty Points** | Stellar Testnet | `CD4JFZXDEDDMT4F5U7PXCXQDBXAKATTJRRGZBQF3XXYLKYPRURMFVQLT` | Isolated storage contract. Issues and tracks SplitX Loyalty Points securely. Only updatable via verified cross-contract authorization. |
 ---
 
 ## 🔗 Links
