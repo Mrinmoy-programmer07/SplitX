@@ -490,7 +490,6 @@ SplitX uses a custom dark theme with carefully curated design tokens:
 | Basic caching implementation | ✅ | `localStorage` caching for Recent Contacts |
 | Writing tests for application | ✅ | Vitest suite (9 passing tests in `src/utils/`) |
 | Screenshot: test output | ✅ | See screenshot below ↓ |
-| Demo video recorded (1-min max) | ✅ | [**[INSERT_YOUTUBE_LINK_HERE]**] |
 
 ### 🧪 Test Suite Output
 
