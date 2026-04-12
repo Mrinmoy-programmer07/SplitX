@@ -516,7 +516,7 @@ SplitX uses Vitest for unit testing core logic (error classification and debt ca
 | Inter-contract Calls working | ✅ | `expense_logger` natively calls `splitx_loyalty` to mint Points |
 | Contract Addresses | ✅ | `expense_logger` -> `CBAPJNANWCO6QVEWPFPDMI44ABFJVE5VAEAYEUHF432G6J4EOQ3OVPQG` |
 | Token / Inter-contract Address | ✅ | `loyalty` -> `CD4JFZXDEDDMT4F5U7PXCXQDBXAKATTJRRGZBQF3XXYLKYPRURMFVQLT` |
-| Advanced Transaction Hash | ✅ | Payload includes Loyalty Contract binding |
+| Advanced Transaction Hash | ✅ | See hashes below ↓ |
 
 ### 🧠 Smart Contracts Architecture
 
@@ -526,6 +526,17 @@ As part of the Green Belt advanced architectural upgrades, SplitX has migrated f
 |---|---|---|---|
 | **Expense Logger** | Stellar Testnet | `CBAPJNANWCO6QVEWPFPDMI44ABFJVE5VAEAYEUHF432G6J4EOQ3OVPQG` | Primary application contract. Receives settlement transactions, verifies signatures, logs data, and performs `invoke_contract` calls into the Loyalty module natively. |
 | **Loyalty Points** | Stellar Testnet | `CD4JFZXDEDDMT4F5U7PXCXQDBXAKATTJRRGZBQF3XXYLKYPRURMFVQLT` | Isolated storage contract. Issues and tracks SplitX Loyalty Points securely. Only updatable via verified cross-contract authorization. |
+
+### 🚀 Cross-Contract Transaction Output
+
+The transaction successfully settled XLM and invoked the Loyalty Point minting contract dynamically.
+
+- **Payment TX Hash**: [`ae8f46c956d0240007f7df358fcd38ae47e6e433b5864f60dcea7cf3c0a6d8fe`](https://stellar.expert/explorer/testnet/tx/ae8f46c956d0240007f7df358fcd38ae47e6e433b5864f60dcea7cf3c0a6d8fe)
+- **Contract TX Hash**: [`58fd0a550931e5abf7d7223009382da4170c53ee13d8eaf1cc64982939b21eaa`](https://stellar.expert/explorer/testnet/tx/58fd0a550931e5abf7d7223009382da4170c53ee13d8eaf1cc64982939b21eaa)
+
+<p align="center">
+  <img src="docs/screenshots/07_green_belt_tx.png" alt="Valid Inter-Contract Transaction" width="400" />
+</p>
 ---
 
 ## 🔗 Links
