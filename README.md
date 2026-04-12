@@ -429,6 +429,15 @@ SplitX uses a custom dark theme with carefully curated design tokens:
 | README with setup instructions | ✅ |
 | Deployed application | ✅ |
 
+### 📸 White Belt Details & Screenshots
+- **Wallet connected state & Balance displayed**: Shown in the [Wallet Connected](#wallet-connected--balance-displayed) section above.
+- **Successful testnet transaction & result**: See the success modal screenshot below.
+- **Transaction Hash**: [`48b3ec248f0e4f2a4ee0254b2fa79cbf9914f2d7c112a33b7dd7aecc3ed2d0c3`](https://stellar.expert/explorer/testnet/tx/48b3ec248f0e4f2a4ee0254b2fa79cbf9914f2d7c112a33b7dd7aecc3ed2d0c3)
+
+<p align="center">
+  <img src="docs/screenshots/05_transaction_success.png" alt="Transaction Success" width="60%" />
+</p>
+
 ---
 
 ## 🟡 Yellow Belt (Level 2) — Submission Checklist
