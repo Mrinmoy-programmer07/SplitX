@@ -1,3 +1,5 @@
+import { Skeleton } from '../ui/Skeleton';
+
 interface BalanceWidgetProps {
   wallet: string | null;
   balance: string | null;
@@ -25,7 +27,7 @@ export function BalanceWidget({ wallet, balance, isFetching }: BalanceWidgetProp
             <div>
               <p className="text-xs text-gray-500 uppercase tracking-widest mb-2 font-bold">Liquid Balance</p>
               {isFetching ? (
-                <div className="h-12 bg-gray-800/80 rounded-lg animate-pulse-slow w-3/4"></div>
+                <Skeleton className="h-12 w-3/4" />
               ) : (
                 <div className="flex items-baseline gap-3 animate-slide-up">
                   <span className="text-5xl font-extrabold tracking-tighter text-white drop-shadow-md">{balance}</span>
