@@ -13,7 +13,7 @@ interface DashboardProps {
 
 export function Dashboard({ wallet, balance, isFetching, splitResult, onCalculate, onSettle }: DashboardProps) {
   return (
-    <main className="flex-1 w-full max-w-7xl mx-auto px-4 py-8 lg:py-16">
+    <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
       <div className="mb-12 animate-slide-up">
           <h1 className="text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-splitx-primary to-splitx-secondary tracking-tight drop-shadow-sm">
             Dashboard
